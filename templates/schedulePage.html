@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Schedule</title>
+    <!-- Include your CSS styles or link to external libraries here -->
+    <style>
+        body {
+            text-align: center;
+            gap: 20px;
+            background-color: #f8f8f8;
+            background-image: url("static/images/scp10.jpg");
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .highlight-day {
+            background-color: #f5cf5d;
+            font-weight: bold;
+        }
+
+        .highlight-line {
+            background-color: #e1f5fe;
+        }
+
+        .highlight-screen {
+            background-color: #c8e6c9;
+        }
+
+        .highlight-movie {
+            background-color: #c6f6e2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="scheduleTable">
+        <!-- Include your schedule data here -->
+        <!-- {{ schedule_data | safe }} -->
+    </table>
+
+
+    <!-- Include your JavaScript code here -->
+    <script>
+        // Assume you have a JavaScript variable 'scheduleData' containing the schedule string
+        var scheduleData = '{{ schedule_data | safe }}';
+    
+        // Parse the scheduleData and update the table
+        function updateTable() {
+            var table = document.getElementById('scheduleTable');
+    
+            // Clear existing rows
+            table.innerHTML = "";
+    
+            // Split the scheduleData into rows
+            var rows = scheduleData.split('\n');
+    
+            for (var i = 0; i < rows.length; i++) {
+                var columns = rows[i].split(/\t/); // Split by tab character
+    
+                var row = table.insertRow();
+                for (var j = 0; j < columns.length; j++) {
+                    var cell = row.insertCell(j);
+                    cell.textContent = columns[j];
+                }
+    
+                // Apply styles based on conditions
+                if (rows[i].startsWith('Day')) {
+                    row.classList.add('highlight-day'); // Highlight lines that start with "Day"
+                } else if (columns.length <= 2 || columns[1] === 'Screen' || columns[2] === 'seats)') {
+                    row.classList.add('highlight-line'); // Highlight lines without screen and movie name columns
+                } else if (columns[1].startsWith('Screen')) {
+                    row.classList.add('highlight-screen'); // Highlight lines with screen information
+                } else if (columns.length > 2) {
+                    row.classList.add('highlight-movie'); // Highlight lines with movie information
+                }
+            }
+        }
+    
+        // Call the function to update the table
+        updateTable();
+    </script>
+</body>
+
+</html>

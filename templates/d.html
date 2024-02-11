@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Scheduler - Input Page</title>
+    <!-- Include your CSS styles or link to external libraries here -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-field {
+            width: 250px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        /* Adjust the width for text input fields */
+        .input-field[type="text"] {
+            width: 250px;
+            padding:8px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #00FF00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Your input fields go here -->
+    <label for="numMovies">Number of Movies:</label>
+    <input type="number" id="numMovies" class="input-field" required>
+
+    <label for="movieNames">List of Movie Names:</label>
+    <textarea type="text" id="movieNames" class="input-field"  required></textarea>
+
+    <label for="seatRequests">Seat Requests for Each Movie:</label>
+    <textarea type="text" id="seatRequests" class="input-field"  required></textarea>
+
+    <label for="numScreens">Number of Screens:</label>
+    <input type="number" id="numScreens" class="input-field" required>
+
+    <label for="availableSeats">Available Seats for Each Screen:</label>
+    <textarea type="text" id="availableSeats" class="input-field"  required></textarea>
+
+    <!-- Your submit button goes here -->
+    <button class="submit-button" onclick="processInput()">Submit</button>
+
+    <!-- Include your JavaScript code here -->
+    <script>
+        // Your JavaScript functions here
+        function processInput() {
+            // Get the values from the input fields
+            var numMovies = document.getElementById("numMovies").value;
+            var movieNames = document.getElementById("movieNames").value;
+            var seatRequests = document.getElementById("seatRequests").value;
+            var numScreens = document.getElementById("numScreens").value;
+            var availableSeats = document.getElementById("availableSeats").value;
+
+            // Rest of your processing logic goes here
+            // ...
+
+            // Example: Log the values to the console
+            console.log("Number of Movies:", numMovies);
+            console.log("Movie Names:", movieNames);
+            console.log("Seat Requests:", seatRequests);
+            console.log("Number of Screens:", numScreens);
+            console.log("Available Seats:", availableSeats);
+
+            // Add logic to generate schedule using the provided input values
+
+            // Redirect to the schedule page
+            window.location.href = "schedulePage.html";
+        }
+    </script>
+
+</body>
+
+</html>

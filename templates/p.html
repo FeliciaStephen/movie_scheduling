@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Schedule</title>
+    <!-- Include your CSS styles or link to external libraries here -->
+    <style>
+        body {
+            text-align: center;
+            gap: 20px;
+            background-color: azure;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Your table content here -->
+    <table id="scheduleTable">
+        <!-- Include your schedule data here -->
+        <!-- {{ schedule_data | safe }} -->
+    </table>
+
+    <!-- Include your JavaScript code here -->
+    <script>
+        // Your JavaScript functions here
+
+        // Assume you have a JavaScript variable 'scheduleData' containing the schedule string
+        var scheduleData = `{{ schedule_data | safe }}`;
+
+        // Parse the scheduleData and update the table
+        function updateTable() {
+            var table = document.getElementById('scheduleTable');
+
+            // Clear existing rows
+            table.innerHTML = "";
+
+            // Split the scheduleData into rows
+            var rows = scheduleData.split('\n');
+
+            for (var i = 0; i < rows.length; i++) {
+                var columns = rows[i].split(/\t/); // Split by tab character
+
+                var row = table.insertRow();
+                for (var j = 0; j < columns.length; j++) {
+                    var cell = row.insertCell(j);
+                    cell.textContent = columns[j];
+                }
+            }
+        }
+
+        // Call the function to update the table
+        updateTable();
+    </script>
+
+</body>
+</html>

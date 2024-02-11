@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Scheduler - Input Page</title>
+    <!-- Include your CSS styles or link to external libraries here -->
+    <style>
+        /* Add this style block inside the <style> tag in your HTML head or in an external CSS file */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("static/images/b2.jpg");
+  background-size: cover; /* Adjust as needed */
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Apply a transparent background to the form */
+form {
+  background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (alpha) for transparency */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Adjust the gap between input fields */
+}
+
+/* Apply a transparent background to the input fields */
+.input-field,
+.textarea-field {
+  width: 250px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (alpha) for transparency */
+  border-width: 40%; /* Set the border width to 40% */
+}
+
+.input-field[type="text"],
+.input-field[type="number"],
+.textarea-field {
+  width: 100%; /* Make the input fields full width */
+}
+
+/* Apply a transparent background to the submit button */
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #00ff00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 255, 0, 0.7); /* Adjust the last value (alpha) for transparency */
+}
+
+    </style>
+  </head>
+
+  <body>
+    <form action="/schedulePage" method="post">
+      <!-- Your input fields go here -->
+      <label for="numMovies">Number of Movies:</label>
+      <input
+        type="number"
+        id="numMovies"
+        name="numMovies"
+        class="input-field"
+        required
+        onchange="limitMovieInputs()"
+      />
+
+      <label for="movieNames">List of Movie Names:</label>
+      <textarea
+        type="text"
+        id="movieNames"
+        name="movieNames"
+        class="input-field"
+        required
+      ></textarea>
+
+      <label for="seatRequests">Seat Requests for Each Movie:</label>
+      <textarea
+        type="text"
+        id="seatRequests"
+        name="seatRequests"
+        class="input-field"
+        required
+      ></textarea>
+
+      <label for="numScreens">Number of Screens:</label>
+      <input
+        type="number"
+        id="numScreens"
+        name="numScreens"
+        class="input-field"
+        required
+        onchange="limitScreenInputs()"
+      />
+
+      <label for="availableSeats">Available Seats for Each Screen:</label>
+      <textarea
+        type="text"
+        id="availableSeats"
+        name="availableSeats"
+        class="input-field"
+        required
+      ></textarea>
+
+      <!-- Your submit button goes here -->
+      <button class="submit-button">Submit</button>
+    </form>
+
+    <!-- Include your JavaScript code here -->
+    <script>
+      // Your JavaScript functions here
+      function redirectToInputPage() {
+        // Get the input values
+        var numMovies = document.getElementById("numMovies").value;
+        var movieNames = document.getElementById("movieNames").value;
+        var seatRequests = document.getElementById("seatRequests").value;
+        var numScreens = document.getElementById("numScreens").value;
+        var availableSeats = document.getElementById("availableSeats").value;
+
+        // Redirect to inputPage.html with input data
+        window.location.href = `/inputPage?num_movies=${numMovies}&movie_names=${movieNames}&seat_requests=${seatRequests}&num_screens=${numScreens}&available_seats=${availableSeats}`;
+      }
+    </script>
+  </body>
+</html>
